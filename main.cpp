@@ -57,9 +57,12 @@ void test_Invoice_Master_File() {
 
 void test_Customer_File() {
   Customer_Master_File test_cm_file = generate_Customer_Master_File(100,10);
+  Customer_Sample_File test_cs_file("test_cs_file.csv");
+  test_cs_file.generate(10);
   Customer_File test_customer_file("test_customer_file.csv",6,6);
   //std::cout << test_customer_file.get_num_rows() << std::endl;
   test_customer_file.generate(test_cm_file);
+  CSV_File smaller_customer_file = test_customer_file.sample(test_cs_file);
 }
 
 int main() {
