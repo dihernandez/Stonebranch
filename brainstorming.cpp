@@ -49,6 +49,10 @@ constructor writes header
 constructor (int num_rows) {
   file.write(line row for row in num_rows)
 }
+unordered_map<string> extract_customers() {
+  go line by line and extract all customer codes
+  and return
+}
 
 Customer_Master_File : CSV_File
 constructor{
@@ -75,6 +79,17 @@ void populate(Customer_Master_File master) {
   write_line("\"CUSTOMER_CODE\",\"FIRSTNAME\",\"LASTNAME\"") // O(n^2)
 }
 }
+CSV_File sample(Customer_Sample_File customer_samples) {
+  unordered_map<string> customers = {extract all customers form customer_samples}
+  CSV_File sampled_customers;
+  while file.isopen:
+    string line = getline()
+    if line.split()[0] is in customers:
+    sampled_customers.append(line);
+  )
+
+  return sampled_customers;
+}
 
 Invoice_File : CSV_File
 constructor
@@ -90,6 +105,14 @@ void populate(Invoice_Master_File invoice_codes, Customer_Master_File customers)
     write_line(CUSTOMER_CODE + INVOICE_CODE + amount + date)
 }
 }
+CSV_File sample(Customer_Sample_File customer_samples) {
+  CSV_File sampled_invoices;
+  unordered_map<string> customers = customer_samples.extract_customers()
+  line by line through current file:
+    if line[1] in customers:
+    sampled_invoices.write_line(line)
+  return sampled_invoices;
+}
 
 Invoice_Item : CSV_File
 constructor
@@ -102,6 +125,14 @@ void populate(Invoice_Master_File invoices) {
     int quantity = random int up to 1000000
     write_line(INVOICE_CODE + ITEM_CODE + amount + quantity)
 }
+CSV_File sample(CSV_File smaller_invoice_file) {
+  CSV_File smaller_invoice_item_file;
+  unordered_map<string> invoice_codes = extract smaller_invoice_file invoice invoice_codes
+  for line in file:
+    if line[0] in invoice_codes
+    smaller_invoice_item_file.write_line(line)
+  return smaller_invoice_item_file;
+}
 
 class Date
 months = {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"}
@@ -113,6 +144,12 @@ choose a random month
 choose a day between 1 and 28 and return as zero padded two digit string
 choose a year between 1900 and 2024
 
+struct SmallerFiles{
+  CSV_File smaller_customer_file;
+  CSV_File smaller_invoice_file;
+  CSV_File smaller_invoice_item_file;
+ }
+
 Application
 holds references to Customer, Invoice, and Invoice_Items, takes
 a reference to Input, creates and holds field for Output
@@ -120,9 +157,17 @@ Customer_Master_File customer_master_file;
 Invoice_Master_File invoice_master_file;
 Customer_File customer_file;
 Invoice_File invoice_file;
-Invoice_Item invoice_item;
+Invoice_Item_File invoice_item_file;
 Application(int total_num_customers, int total_num_invoices, int num invoice_items) {
    // construct all files
+}
+
+SmallerFiles extract_smaller_files(Customer_Sample_File customer_samples) {
+  SmallerFiles;
+  SmallerFiles.smaller_customer_file = customer_file.sample(customer_samples);
+  SmallerFiles.smaller_invoice_file = invoice_file.sample(customer_samples);
+  SmallerFiles.smaller_invoice_item_file = invoice_item_file.sample(SmallerFiles.smaller_invoice_file);
+  return SmallerFiles;
 }
 
 
