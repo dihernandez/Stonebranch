@@ -1,5 +1,5 @@
-output:	main.o	CSV_File.o	Customer_Sample_File.o	Customer_Master_File.o	Invoice_Master_File.o	Customer_File.o	Invoice_File.o
-	g++	-std=c++17	main.o	CSV_File.o	Customer_Sample_File.o	Customer_Master_File.o	Invoice_Master_File.o	Customer_File.o	Invoice_File.o	-o	output
+output:	main.o	CSV_File.o	Customer_Sample_File.o	Customer_Master_File.o	Invoice_Master_File.o	Customer_File.o	Invoice_File.o	Invoice_Item_File.o
+	g++	-std=c++17	main.o	CSV_File.o	Customer_Sample_File.o	Customer_Master_File.o	Invoice_Master_File.o	Customer_File.o	Invoice_File.o	Invoice_Item_File.o	-o	output
 
 main.o:	main.cpp
 	g++ -std=c++17	-c	main.cpp
@@ -21,6 +21,9 @@ Customer_File.o:	Customer_File.cpp	Customer_File.hpp
 
 Invoice_File.o:	Invoice_File.cpp	Invoice_File.hpp
 	g++	-std=c++17	-c	Invoice_File.cpp
+
+Invoice_Item_File.o:	Invoice_Item_File.cpp	Invoice_Item_File.hpp
+	g++	-std=c++17	-c	Invoice_Item_File.cpp
 
 clean:
 	rm	*.o	output
