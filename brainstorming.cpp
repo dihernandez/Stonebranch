@@ -46,7 +46,7 @@ takes a filename and opens the file
 
 Customer_Sample_File : CSV_File
 constructor writes header
-constructor (int num_rows) {
+generate (int num_rows) {
   file.write(line row for row in num_rows)
 }
 unordered_map<string> extract_customers() {

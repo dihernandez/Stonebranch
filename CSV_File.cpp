@@ -3,9 +3,6 @@
 #include <filesystem>
 
 CSV_File::CSV_File(std::string filename) : filename(filename) {
-  // if(std::filesystem::remove(filename)) {
-  //   std::cout << "file already existed. Deleted file before creating again" << std::endl;
-  // }
   num_rows = 0;
 
   write_file_handle.open(filename); // create file
@@ -29,7 +26,7 @@ std::string CSV_File::read_line(int row_num) {
     line_num++;
   }
   if(line == "") {
-    std::cerr << "/* row not found */";
+    std::cerr << "/* row " << row_num << " not found */" << '\n';
   }
   read_file_handle.close();
   return line;

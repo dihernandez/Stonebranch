@@ -5,6 +5,7 @@
 #include <string>
 
 class CSV_File{
+protected:
   std::ofstream write_file_handle;
   std::ifstream read_file_handle;
   std::string filename;
