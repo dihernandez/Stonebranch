@@ -42,6 +42,8 @@ void Customer_File::generate(Customer_Master_File& master) {
 CSV_File Customer_File::sample(Customer_Sample_File &customer_samples) {
   std::unordered_set<std::string> customers = customer_samples.extract_customers();
   CSV_File sampled_customers("smaller_customer_file.csv");
+  std::string header = "\"CUSTOMER_CODE\",\"FIRSTNAME\",\"LASTNAME\"\n";
+  sampled_customers.write_line(header);
   for(int i = 1; i < num_rows; i++) {
     std::string line = read_line(i);
     std::string CUSTOMER_CODE = line.substr(0,line.find(","));

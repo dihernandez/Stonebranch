@@ -12,7 +12,7 @@ void Invoice_Master_File::generate(int num_rows) {
     for(int i = 0; i < invoice_code_size - invoice_id.length(); i++) {
       zero_pad += '0';
     }
-    INVOICE_CODE += zero_pad + invoice_id + '\n';
+    INVOICE_CODE += zero_pad + invoice_id + "\"\n";
     write_line(INVOICE_CODE);
   }
 }
