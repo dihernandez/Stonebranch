@@ -1,5 +1,6 @@
 #include "CSV_File.hpp"
 #include "Customer_Sample_File.hpp"
+#include "Customer_Master_File.hpp"
 #include <iostream>
 #include <cassert>
 
@@ -27,7 +28,19 @@ void test_Customer_Sample_File() {
   }
 }
 
+void test_Customer_Master_File() {
+  int num_rows_master = 100;
+  int num_rows_seed = 10;
+  assert(num_rows_master > num_rows_seed);
+  Customer_Sample_File test_cs_file("test_cs_file.csv");
+  test_cs_file.generate(num_rows_seed);
+  Customer_Master_File test_cm_file("test_cm_file.csv");
+  std::cout << test_cm_file.read_line(0) << std::endl; // should output "CUSTOMER_CODE"
+  test_cm_file.generate(test_cs_file, num_rows_master);
+}
+
 int main() {
 //  test_CSV_File();
-  test_Customer_Sample_File();
+//  test_Customer_Sample_File();
+  test_Customer_Master_File();
 }

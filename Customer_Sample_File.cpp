@@ -6,13 +6,7 @@
 #include <algorithm>
 
 Customer_Sample_File::Customer_Sample_File(std::string filename) : CSV_File(filename), customer_code_size(30) {
-  write_file_handle.open(filename); // create file
-  if(!write_file_handle.is_open()) {
-    std::cerr << "/* file failed to open in constructor */" << '\n';
-  }
-  write_file_handle << "\"CUSTOMER_CODE\"" << std::endl;
-  num_rows++;
-  write_file_handle.close();
+  write_line("\"CUSTOMER_CODE\"\n");
 }
 
 void Customer_Sample_File::generate(int num_rows) {
