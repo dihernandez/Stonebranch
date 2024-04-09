@@ -2,6 +2,7 @@
 #include "Customer_Sample_File.hpp"
 #include "Customer_Master_File.hpp"
 #include "Invoice_Master_File.hpp"
+#include "Customer_File.hpp"
 #include <iostream>
 #include <cassert>
 
@@ -40,14 +41,31 @@ void test_Customer_Master_File() {
   test_cm_file.generate(test_cs_file, num_rows_master);
 }
 
+Customer_Master_File generate_Customer_Master_File(int num_rows_master, int num_rows_seed) {
+  assert(num_rows_master > num_rows_seed);
+  Customer_Sample_File test_cs_file("test_cs_file.csv");
+  test_cs_file.generate(num_rows_seed);
+  Customer_Master_File test_cm_file("test_cm_file.csv");
+  test_cm_file.generate(test_cs_file, num_rows_master);
+  return test_cm_file;
+}
+
 void test_Invoice_Master_File() {
     Invoice_Master_File test_im_file("test_im_file.csv");
     test_im_file.generate(10);
+}
+
+void test_Customer_File() {
+  Customer_Master_File test_cm_file = generate_Customer_Master_File(100,10);
+  Customer_File test_customer_file("test_customer_file.csv",6,6);
+  //std::cout << test_customer_file.get_num_rows() << std::endl;
+  test_customer_file.generate(test_cm_file);
 }
 
 int main() {
 //  test_CSV_File();
 //  test_Customer_Sample_File();
 //  test_Customer_Master_File();
-  test_Invoice_Master_File();
+//  test_Invoice_Master_File();
+test_Customer_File();
 }
