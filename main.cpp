@@ -1,6 +1,7 @@
 #include "CSV_File.hpp"
 #include "Customer_Sample_File.hpp"
 #include "Customer_Master_File.hpp"
+#include "Invoice_Master_File.hpp"
 #include <iostream>
 #include <cassert>
 
@@ -39,8 +40,14 @@ void test_Customer_Master_File() {
   test_cm_file.generate(test_cs_file, num_rows_master);
 }
 
+void test_Invoice_Master_File() {
+    Invoice_Master_File test_im_file("test_im_file.csv");
+    test_im_file.generate(10);
+}
+
 int main() {
 //  test_CSV_File();
 //  test_Customer_Sample_File();
-  test_Customer_Master_File();
+//  test_Customer_Master_File();
+  test_Invoice_Master_File();
 }
