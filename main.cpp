@@ -5,6 +5,7 @@
 #include "Customer_File.hpp"
 #include "Invoice_File.hpp"
 #include "Invoice_Item_File.hpp"
+#include "Application.hpp"
 #include <iostream>
 #include <cassert>
 
@@ -91,6 +92,14 @@ void test_Invoice_Item_File() {
   test_ii_file.sample(smaller_invoice_file);
 }
 
+void test_Application() {
+//  Application default_app;
+  Application customized(10,100,200,500);
+  Customer_Sample_File sample_file("sample_seed.csv");
+  sample_file.generate(10);
+  customized.extract_smaller_files(sample_file);
+}
+
 int main() {
 //  test_CSV_File();
 //  test_Customer_Sample_File();
@@ -98,5 +107,6 @@ int main() {
 //  test_Invoice_Master_File();
 //  test_Customer_File();
 //  test_Invoice_File();
-  test_Invoice_Item_File();
+  // test_Invoice_Item_File();
+  test_Application();
 }
