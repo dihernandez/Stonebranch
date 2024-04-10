@@ -20,6 +20,9 @@ public:
   // Creates a file containing all the lines where CUSTOMER_CODE matches those in
   // the sample file (a Customer_Sample_File). Returns a CSV_File.
   CSV_File sample(Customer_Sample_File &customer_samples);
+
+  // A version of sample that runs in O(n) time
+  CSV_File sample_fast(Customer_Sample_File &customer_samples);
 };
 
 #endif /* Customer_File_hpp */

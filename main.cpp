@@ -41,7 +41,8 @@ void test_Customer_Master_File() {
   test_cs_file.generate(num_rows_seed);
   Customer_Master_File test_cm_file("test_cm_file.csv");
   std::cout << test_cm_file.read_line(0) << std::endl; // should output "CUSTOMER_CODE"
-  test_cm_file.generate(test_cs_file, num_rows_master);
+  //test_cm_file.generate(test_cs_file, num_rows_master);
+  test_cm_file.generate(5000000);
 }
 
 Customer_Master_File generate_Customer_Master_File(int num_rows_master, Customer_Sample_File &samples) {
@@ -92,6 +93,17 @@ void test_Invoice_Item_File() {
   test_ii_file.sample(smaller_invoice_file);
 }
 
+void test_sample_fast() {
+  Customer_Master_File test_cm_large_file("test_cm_large_file.csv");
+  test_cm_large_file.generate(500000);
+  Customer_File test_customer_large_file("test_customer_large_file.csv");
+  test_customer_large_file.generate(test_cm_large_file);
+  Customer_Sample_File test_cs_large_file("test_cs_large_file.csv");
+  test_cs_large_file.generate(1000);
+  CSV_File smaller_customer_file = test_customer_large_file.sample_fast(test_cs_large_file);
+  std::cout << "smaller customer file has: " << smaller_customer_file.get_num_rows() << " rows " << std::endl;
+}
+
 void test_Application() {
 //  Application default_app;
   Application customized(10,100,200,500);
@@ -108,5 +120,6 @@ int main() {
 //  test_Customer_File();
 //  test_Invoice_File();
   // test_Invoice_Item_File();
-  test_Application();
+  test_sample_fast();
+  //test_Application();
 }

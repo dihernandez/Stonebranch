@@ -14,6 +14,11 @@ CSV_File::CSV_File(std::string filename) : filename(filename) {
   write_file_handle.close();
 }
 
+std::ifstream* CSV_File::get_read_file_handle() {
+  return &read_file_handle;
+}
+
+
 std::string CSV_File::read_line(int row_num) {
   read_file_handle.open(filename);
   if(!read_file_handle.is_open()) {
@@ -46,4 +51,8 @@ void CSV_File::write_line(std::string line) {
 
 int CSV_File::get_num_rows() {
   return num_rows;
+}
+
+std::string CSV_File::get_filename() {
+  return filename;
 }

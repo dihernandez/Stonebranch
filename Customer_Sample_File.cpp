@@ -27,8 +27,18 @@ void Customer_Sample_File::generate(int num_rows) {
 
 std::unordered_set<std::string> Customer_Sample_File::extract_customers() {
   std::unordered_set<std::string> customers;
-  for(int i = 1; i < num_rows; i++) {
-    customers.insert(read_line(i));
+  read_file_handle.open(filename);
+  if(!read_file_handle.is_open()) {
+    std::cerr << "/* file failed to open in extract_customers */" << '\n';
+  }
+  bool is_header = true;
+  std::string line;
+  while(std::getline(read_file_handle, line)) {
+    if(is_header) { // skip first line
+      is_header = false;
+    } else {
+      customers.insert(line);
+    }
   }
   return customers;
 }

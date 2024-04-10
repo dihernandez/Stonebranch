@@ -10,6 +10,9 @@ public:
   // writes the header
   Customer_Master_File(std::string filename);
 
+  // Generates a master file of CUSTOMER_CODEs of size num_rows
+  void generate(int num_rows);
+
   // Takes a seed of CUSTOMER_CODEs in the form of a Customer_Sample_File and uses
   // it to generate a file of CUSTOMER_CODEs of total size num_rows.
   void generate(Customer_Sample_File& seed, int num_rows);

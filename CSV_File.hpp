@@ -22,12 +22,18 @@ public:
   // Returns the line at that row as a string.
   std::string read_line(int row_num);
 
+  // Returns a pointer to read file handle
+  std::ifstream* get_read_file_handle();
+
   // Takes a string as a new entry into the file. Appends to end of file and increments
   // num_rows
   void write_line(std::string line);
 
   // return num_rows
   int get_num_rows();
+
+  // return filename
+  std::string get_filename();
 };
 
 #endif /* CSV_File_hpp */
