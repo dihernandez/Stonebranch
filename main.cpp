@@ -94,14 +94,21 @@ void test_Invoice_Item_File() {
 }
 
 void test_sample_fast() {
+  int num_customers = 500000;
+  int num_invoices = 1000000;
+  int num_samples = 1000;
   Customer_Master_File test_cm_large_file("test_cm_large_file.csv");
-  test_cm_large_file.generate(500000);
+  test_cm_large_file.generate(num_customers);
   Customer_File test_customer_large_file("test_customer_large_file.csv");
   test_customer_large_file.generate(test_cm_large_file);
   Customer_Sample_File test_cs_large_file("test_cs_large_file.csv");
-  test_cs_large_file.generate(1000);
+  test_cs_large_file.generate(num_samples);
   CSV_File smaller_customer_file = test_customer_large_file.sample_fast(test_cs_large_file);
   std::cout << "smaller customer file has: " << smaller_customer_file.get_num_rows() << " rows " << std::endl;
+  Invoice_File test_invoice_large_file("test_invoice_large_file.csv");
+  test_invoice_large_file.generate(num_invoices,num_customers);
+  CSV_File smaller_invoice_file = test_invoice_large_file.sample_fast(test_cs_large_file);
+  std::cout << "smaller invoice file has: " << smaller_invoice_file.get_num_rows() << " rows " << std::endl;
 }
 
 void test_Application() {

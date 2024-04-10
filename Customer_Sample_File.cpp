@@ -40,5 +40,6 @@ std::unordered_set<std::string> Customer_Sample_File::extract_customers() {
       customers.insert(line);
     }
   }
+  read_file_handle.close();
   return customers;
 }
