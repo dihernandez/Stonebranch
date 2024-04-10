@@ -6,9 +6,9 @@ If “Y” is selected, a Customer File as specified in the document will be cre
 
 Otherwise, the application will prompt the user to enter the values for Customer File, Invoice File, and Invoice Item File sizes.
 
-The application will then prompt the user to enter a sample size, which is the size of the sample to be taken to generate the smaller files. The application will then automatically generate the smaller files for each of Customer, Invoice, and Invoice Item files.
+The application will then prompt the user to enter a sample size, which is the size of the sample to be taken to generate the smaller files. The application will then automatically generate the smaller files for each of Customer, Invoice, and Invoice Item files. If the sample size is bigger than any of the files then all of that file will be selected.
 
-The application will print out the sizes of the files generated and exit.
+The application will print out the sizes of the files generated and exit. We can expect the smaller customer file to be about the same size as the sample size, the smaller invoice file to be representative of the relative size of the invoice file to the customer file, and the smaller invoice file size to be representative of the relative size of the invoice file to the invoice item file.
 
 The structure of my application is:
 
