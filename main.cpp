@@ -79,9 +79,16 @@ void test_Invoice_File() {
 
 void test_Invoice_Item_File() {
   Invoice_Item_File test_ii_file("test_ii_file.csv", 6);
+  Invoice_File test_invoice_file("test_invoice_file.csv");
   Invoice_Master_File test_im_file("test_im_file.csv");
   test_im_file.generate(100);
+  Customer_Sample_File test_cs_file("test_cs_file.csv");
+  test_cs_file.generate(10);
+  Customer_Master_File test_cm_file = generate_Customer_Master_File(100,test_cs_file);
+  test_invoice_file.generate(test_im_file, test_cm_file);
   test_ii_file.generate(test_im_file, 500);
+  CSV_File smaller_invoice_file = test_invoice_file.sample(test_cs_file);
+  test_ii_file.sample(smaller_invoice_file);
 }
 
 int main() {
