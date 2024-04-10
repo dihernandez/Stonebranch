@@ -51,7 +51,7 @@ void Invoice_File::generate(int num_invoices, int num_customers) {
   std::shuffle(available_code_nums.begin(), available_code_nums.end(), std::mt19937 {std::random_device{}()});
   for (int i = 0; i < num_invoices; i++) {
     std::string CUSTOMER_CODE = "\"CUST";
-    int code_num = available_code_nums[rand()%num_customers-1];
+    int code_num = available_code_nums[rand()%(num_customers-1)];
     std::string customer_id = std::to_string(code_num);
     std::string zero_pad = "";
     for(int i = 0; i < customer_code_size - customer_id.size(); i++) {
@@ -114,6 +114,6 @@ CSV_File Invoice_File::sample_fast(Customer_Sample_File& customer_samples) {
       }
     }
   }
-
+  read_file_handle.close();
   return sampled_invoices;
 }

@@ -14,9 +14,7 @@ struct SmallerFiles{
 };
 
 class Application {
-  Customer_Sample_File seed;
   Customer_Master_File customer_master_file;
-  Invoice_Master_File invoice_master_file;
   Customer_File customer_file;
   Invoice_File invoice_file;
   Invoice_Item_File invoice_item_file;
@@ -26,10 +24,9 @@ public:
   // and 1 million invoices in invoice_master_file as seeds and 5 million invoice items.
   Application();
 
-  // Creates an application with specified num_seed customers in the seed file,
-  // num_customers customers in customer_master_file
+  // Creates an application with specified num_customers customers in customer_master_file
   // and num_invoices in invoice_master_file and num_invoice_items in invoice_items file.
-  Application(int num_seed, int num_customers, int num_invoices, int num_invoice_items);
+  Application(int num_customers, int num_invoices, int num_invoice_items);
 
   // Extracts all the smaller files based on customer_samples and returns a
   // struct containing handles to all the files.
