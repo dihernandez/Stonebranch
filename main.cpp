@@ -172,10 +172,23 @@ void run_app() {
     std::cout << "Enter an integer value for invoice file size." << std::endl;
     std::cin >> invoice_size_str;
     invoice_size = stoi(invoice_size_str);
-    std::cout << "Enter an integer value for invoice item file size." << std::endl;
+    std::cout << "Customer, Invoice, and Invoice Item files created. Enter an integer value for invoice item file size." << std::endl;
     std::cin >> invoice_item_size_str;
     invoice_item_size = stoi(invoice_item_size_str);
     Application custom_app(customer_size, invoice_size, invoice_item_size);
+    int sample_size;
+    std::string sample_size_str;
+    std::cout << "Enter an integer to specify the sample size" << std::endl;
+    std::cin >> sample_size_str;
+    sample_size = stoi(sample_size_str);
+    Customer_Sample_File sample_file("sample_seed.csv");
+    sample_file.generate(sample_size);
+    std::cout << "Extracting files" << std::endl;
+    custom_app.extract_smaller_files(sample_file);
+    SmallerFiles* smaller_files = custom_app.extract_smaller_files(sample_file);
+    std::cout << "smaller customer file has: " << smaller_files->smaller_customer_file.get_num_rows() << " rows" << std::endl;
+    std::cout << "smaller invoice file has: " << smaller_files->smaller_invoice_file.get_num_rows() << " rows" << std::endl;
+    std::cout << "smaller invoice item file has: " << smaller_files->smaller_invoice_item_file.get_num_rows() << " rows" << std::endl;
   }
 }
 
@@ -187,8 +200,8 @@ int main() {
 //  test_Customer_File();
 //  test_Invoice_File();
   // test_Invoice_Item_File();
-  test_sample_fast();
-  //test_Application();
-
-  // run_app();
+  //test_sample_fast();
+  //test_Application_small();
+  //test_Application_large();
+  run_app();
 }

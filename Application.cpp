@@ -27,17 +27,8 @@ Application::Application() :
     }
 
 SmallerFiles* Application::extract_smaller_files(Customer_Sample_File &customer_samples) {
-  smaller_files.smaller_customer_file = customer_file.sample(customer_samples);
-  smaller_files.smaller_invoice_file = invoice_file.sample(customer_samples);
-  smaller_files.smaller_invoice_item_file = invoice_item_file.sample(smaller_files.smaller_invoice_file);
+  smaller_files.smaller_customer_file = customer_file.sample_fast(customer_samples);
+  smaller_files.smaller_invoice_file = invoice_file.sample_fast(customer_samples);
+  smaller_files.smaller_invoice_item_file = invoice_item_file.sample_fast(smaller_files.smaller_invoice_file);
   return &smaller_files;
 }
-
-// void Application::extract_smaller_files(Customer_Sample_File &customer_samples) {
-//   customer_file.sample(customer_samples);
-//   std::cout << "after creating smaller customer file \n";
-//   CSV_File sampled_invoices = invoice_file.sample(customer_samples);
-//   std::cout << "after creating smaller invoice file \n";
-//   invoice_item_file.sample(sampled_invoices);
-//   std::cout << "after creating smaller invoice item file \n";
-// }

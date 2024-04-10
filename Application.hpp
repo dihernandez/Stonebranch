@@ -4,7 +4,6 @@
 #include "Invoice_File.hpp"
 #include "Invoice_Item_File.hpp"
 #include "Customer_Master_File.hpp"
-#include "Invoice_Master_File.hpp"
 #include "Customer_Sample_File.hpp"
 
 struct SmallerFiles{
@@ -31,10 +30,6 @@ public:
   // Extracts all the smaller files based on customer_samples and returns a
   // struct containing handles to all the files.
   SmallerFiles* extract_smaller_files(Customer_Sample_File &customer_samples);
-
-  // Extracts all the smaller files based on customer_samples creating smaller customer, invoice,
-  // and invoice_items files.
-  // void extract_smaller_files(Customer_Sample_File &customer_samples);
 };
 
 #endif /* Application_hpp */

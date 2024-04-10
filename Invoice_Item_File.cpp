@@ -79,10 +79,6 @@ CSV_File Invoice_Item_File::sample(CSV_File& smaller_invoice_file) {
     invoice_codes.insert(INVOICE_CODE);
   }
 
-  for(auto code : invoice_codes) {
-    std::cout << code << std::endl;
-  }
-
   for(int i = 1; i < num_rows; i++) {
     std::string line = read_line(i);
     std::string INVOICE_CODE = line.substr(0,line.find(","));
