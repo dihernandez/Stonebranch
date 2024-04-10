@@ -20,6 +20,7 @@ class Application {
   Customer_File customer_file;
   Invoice_File invoice_file;
   Invoice_Item_File invoice_item_file;
+  SmallerFiles smaller_files;
 public:
   // Creates an application with default values of 500k customers in customer_master_file
   // and 1 million invoices in invoice_master_file as seeds and 5 million invoice items.
@@ -32,7 +33,11 @@ public:
 
   // Extracts all the smaller files based on customer_samples and returns a
   // struct containing handles to all the files.
-  SmallerFiles extract_smaller_files(Customer_Sample_File &customer_samples);
+  SmallerFiles* extract_smaller_files(Customer_Sample_File &customer_samples);
+
+  // Extracts all the smaller files based on customer_samples creating smaller customer, invoice,
+  // and invoice_items files.
+  // void extract_smaller_files(Customer_Sample_File &customer_samples);
 };
 
 #endif /* Application_hpp */

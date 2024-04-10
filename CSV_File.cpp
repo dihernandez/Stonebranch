@@ -2,6 +2,8 @@
 #include <iostream>
 #include <filesystem>
 
+CSV_File::CSV_File(){}
+
 CSV_File::CSV_File(std::string filename) : filename(filename) {
   num_rows = 0;
 

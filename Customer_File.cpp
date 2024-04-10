@@ -1,5 +1,6 @@
 #include "Customer_File.hpp"
 #include <unordered_set>
+#include <iostream>
 
 Customer_File::Customer_File(std::string filename) : CSV_File(filename), firstname_size(100), lastname_size(100) {
   std::string header = "\"CUSTOMER_CODE\",\"FIRSTNAME\",\"LASTNAME\"\n";

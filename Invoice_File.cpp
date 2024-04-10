@@ -52,13 +52,6 @@ CSV_File Invoice_File::sample(Customer_Sample_File& customer_samples) {
     std::stringstream ss(line);
     int line_idx = 0;
     std::string CUSTOMER_CODE = line.substr(0,line.find(","));
-    // while(std::getline(ss, CUSTOMER_CODE,',')) {
-    //   if(line_idx == 1){
-    //     break;
-    //   }
-    //   line_idx++;
-    // }
-    // std::cout << "customer code is " << CUSTOMER_CODE << std::endl;
     if(customers.find(CUSTOMER_CODE) != customers.end()) {
       sampled_invoices.write_line(line + "\n");
     }

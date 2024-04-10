@@ -11,16 +11,12 @@ protected:
   std::string filename;
   int num_rows;
 public:
+
+  // Default constructor, doesn't initialize anything
+  CSV_File();
+
   // Takes a string filename and assigns it to filename
   CSV_File(std::string filename);
-
-  // copy constructor
-  CSV_File(CSV_File &t) {
-    write_file_handle = t.write_file_handle;
-    read_file_handle = t.read_file_handle;
-    filename = t.filename;
-    num_rows = t.num_rows;
-  }
 
   // Takes an int indicating which line number to read from. 0th line is the header.
   // Returns the line at that row as a string.

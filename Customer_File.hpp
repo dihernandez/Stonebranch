@@ -11,12 +11,6 @@ public:
   // Creates header
   Customer_File(std::string filename);
 
-  // Copy constructor
-  Customer_File(Customer_File &t) {
-    firstname_size = t.firstname_size;
-    lastname_size = t.lastname_size;
-  }
-
   // Creates header and allows for file to create first and last names of different sizes
   Customer_File(std::string filename, int firstname_size, int lastname_size);
 
