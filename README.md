@@ -2,9 +2,9 @@ This application is designed to be used via the command line interface. The Make
 
 The usage is: the user runs make and then ./output to run the program. The instructions will prompt the user to select **Y** to use the default file sizes for the generator and **N** for the user specified file size mode.
 
-If **Y** is selected, a Customer File as specified in the document will be created and generated to hold 500K customers, an Invoice File will be created and generated to hold 1 million invoices, and an Invoice Item File will be created and generated to hold 5 million invoice items.
+If **Y** is selected, a Customer File as specified in the document will be created and generated to hold 500K customers, an Invoice File will be created and generated to hold 1 million invoices, and an Invoice Item File will be created and generated to hold 5 million invoice items. The created files are called *default_customer_file.csv*, *default_invoice_file.csv*, and *default_invoice_item_file.csv*.
 
-Otherwise, the application will prompt the user to enter the values for Customer File, Invoice File, and Invoice Item File sizes.
+Otherwise, the application will prompt the user to enter the values for Customer File, Invoice File, and Invoice Item File sizes. The application will be created and the created files are called *specified_customer_file.csv*, *specified_invoice_file.csv*, and *specified_invoice_item_file.csv*.
 
 The application will then prompt the user to enter a sample size or **Custom** or a number. The number must be a valid integer.
 
