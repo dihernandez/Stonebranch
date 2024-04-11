@@ -41,7 +41,9 @@ Invoice_Master_File
 
 Application
 >A way to hold together instances of all the files necessary to run a sample operation on each file specified in the document.
+>
 >Creates all the files and runs samples on them when the extract_smaller_files method is called. This method returns a pointer to a struct containing CSV_Files that represent the smaller files created in the system.
+>
 >Has a run_app method, which runs the application.
 
 main.cpp
