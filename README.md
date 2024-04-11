@@ -2,13 +2,17 @@ This application is designed to be used via the command line interface. The Make
 
 The usage is: the user runs make and then ./output to run the program. The instructions will prompt the user to select **Y** to use the default file sizes for the generator and **N** for the user specified file size mode.
 
-If **Y** is selected, a Customer File as specified in the document will be created and generated to hold 500K customers, an Invoice File will be created and generated to hold 1 million invoices, and an Invoice Item File will be created and generated to hold 5 million invoice items. 
+If **Y** is selected, a Customer File as specified in the document will be created and generated to hold 500K customers, an Invoice File will be created and generated to hold 1 million invoices, and an Invoice Item File will be created and generated to hold 5 million invoice items.
 
 Otherwise, the application will prompt the user to enter the values for Customer File, Invoice File, and Invoice Item File sizes.
 
-The application will then prompt the user to enter a sample size, which is the size of the sample to be taken to generate the smaller files. The application will then automatically generate the smaller files for each of Customer, Invoice, and Invoice Item files. If the sample size is bigger than any of the files then all of that file will be selected.
+The application will then prompt the user to enter a sample size or **Custom** or a number. The number must be a valid integer.
 
-The application will print out the sizes of the files generated and exit. We can expect the smaller customer file to be about the same size as the sample size, the smaller invoice file to be representative of the relative size of the invoice file to the customer file, and the smaller invoice file size to be representative of the relative size of the invoice file to the invoice item file. 
+If a number is selected, the application will automatically generate the smaller files for each of Customer, Invoice, and Invoice Item files. If the sample size is bigger than any of the files then all of that file will be selected.
+
+If **Custom** is selected, the application will prompt the user to enter a **filename**, which must be the name of an existing_file. The application will then use this file for extraction operations.
+
+The application will print out the sizes of the files generated and exit. We can expect the smaller customer file to be about the same size as the sample size, the smaller invoice file to be representative of the relative size of the invoice file to the customer file, and the smaller invoice file size to be representative of the relative size of the invoice file to the invoice item file.
 
 The files created are called *smaller_customer_file.csv*, *smaller_invoice_file.csv*, and *smaller_invoice_item_file.csv*. Smaller customer file holds all the entries in customer file whose customer code matches the customer code of the generated customer sample file. Smaller invoice file holds all the entries in invoice file whose customer code matches the customer code of the generated customer sample file, where there may be multiple invoices per customer code. Smaller invoice item file holds all the entries in the invoice item file whose invoice code matches the invoice codes present in *smaller_invoice_file.csv*.
 
@@ -36,7 +40,9 @@ Invoice_Master_File
 >a legacy class, not used
 
 Application
->A way to hold together instances of all the files necessary to run a sample operation on each file specified in the document. Creates all the files and runs samples on them when the extract_smaller_files method is called. This method returns a pointer to a struct containing CSV_Files that represent the smaller files created in the system.
+>A way to hold together instances of all the files necessary to run a sample operation on each file specified in the document.
+>Creates all the files and runs samples on them when the extract_smaller_files method is called. This method returns a pointer to a struct containing CSV_Files that represent the smaller files created in the system.
+>Has a run_app method, which runs the application.
 
 main.cpp
 >holds all the testing methods, which can be activated or deactivated in the main method by uncommenting or commenting the test names out. Used for incremental testing as the application was developed. By default, the run_app() method is activated, meaning that no tests will run but the application will run as described above.
