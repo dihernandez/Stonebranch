@@ -18,6 +18,14 @@ class Application {
   Invoice_File invoice_file;
   Invoice_Item_File invoice_item_file;
   SmallerFiles smaller_files;
+
+  // Returns true if input_str consists of only digits
+  bool is_number(std::string input_str);
+
+  // Creates and returns a Customer_Sample_File handle based on input filename
+  // Prompts user for filename if provided name is invalid (file fails to open).
+  Customer_Sample_File create_customer_sample_file_from_existing_file(std::string input_file_name);
+
 public:
   // Creates an application with default values of 500k customers in customer_master_file
   // and 1 million invoices in invoice_master_file as seeds and 5 million invoice items.
@@ -30,6 +38,9 @@ public:
   // Extracts all the smaller files based on customer_samples and returns a
   // struct containing handles to all the files.
   SmallerFiles* extract_smaller_files(Customer_Sample_File &customer_samples);
+
+  // Runs the application
+  void run_app();
 };
 
 #endif /* Application_hpp */

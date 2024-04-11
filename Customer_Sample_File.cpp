@@ -5,6 +5,8 @@
 #include <random>
 #include <algorithm>
 
+Customer_Sample_File::Customer_Sample_File(){}
+
 Customer_Sample_File::Customer_Sample_File(std::string filename) : CSV_File(filename), customer_code_size(30) {
   write_line("\"CUSTOMER_CODE\"\n");
 }
@@ -25,11 +27,26 @@ void Customer_Sample_File::generate(int num_rows) {
   }
 }
 
+void Customer_Sample_File::pass_handle(std::string external_filename) {
+  filename = external_filename;
+  int external_num_rows = 0;
+  read_file_handle.open(filename);
+  if(!read_file_handle.is_open()) {
+    std::cerr << "/* file failed to open in Customer_Sample_File::pass_handle */" << '\n';
+  }
+  std::string line;
+  while(std::getline(read_file_handle, line)) {
+    external_num_rows++;
+  }
+  read_file_handle.close();
+  num_rows = external_num_rows;
+}
+
 std::unordered_set<std::string> Customer_Sample_File::extract_customers() {
   std::unordered_set<std::string> customers;
   read_file_handle.open(filename);
   if(!read_file_handle.is_open()) {
-    std::cerr << "/* file failed to open in extract_customers */" << '\n';
+    std::cerr << "/* file failed to open in Customer_Sample_File::xtract_customers */" << '\n';
   }
   bool is_header = true;
   std::string line;
